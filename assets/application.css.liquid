@@ -1,0 +1,255 @@
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+
+html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+
+*, *:before, *:after {box-sizing: inherit}
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
+:root {
+    --logo-font: 'futura-pt-bold', sans-serif;
+    --body-font: 'futura-pt', sans-serif;
+    --body-font-size: 1.6rem;
+
+    --text-color: black;
+    --light-color: #B2E2BF;
+    --bright-color: #1292FF;
+
+    --line-global: 2rem;
+    --gutter-global: var(--line-global);
+    --offset-global: calc(var(--line-global)* 2)
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.25;
+}
+
+body {
+    font-size: var(--body-font-size);
+    font-family: var(--body-font);
+}
+
+main {
+  padding-top: 8rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    color: var(--text-color);
+    font-family: var(--body-font);
+}
+
+.wrapper {
+    max-width: 1400px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+::selection {
+  background-color: var(--text-color);
+  color: white;
+}
+
+/* PRESETS */
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.half {
+  width: 50%;
+}
+
+/* header styles */
+header {
+  height: 8rem;
+  border-bottom: 1px solid var(--text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 10;
+  padding-top: 1rem;
+}
+
+h1 {
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.menu-drawer {
+  display: none;
+}
+
+nav.header-nav {
+  width: 50%;
+}
+
+ul.header-menu li {
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+  font-size: 2rem;
+}
+
+.cart-button-container {
+  /* padding: 0; */
+  position: relative; 
+}
+
+.cart-button {
+  border: none;
+  background-color: transparent;
+}
+
+.cart-item-count {
+  position: absolute;
+  border: 1px solid black;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  top: 1.3rem;
+  left: 3.1rem;
+}
+
+/* product page */
+.product-template {
+  padding-top: 2.4rem;
+  display: grid;
+  grid-template-columns: calc((100% - 2.5rem) / 2) calc((100% - 2.5rem) / 2);
+}
+
+.product-description-container h2 {
+  margin-bottom: 10rem;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+}
+
+.product-description {
+  width: 50%;
+  margin-bottom: 3rem;
+}
+
+
+/* COLLECTION */
+
+.collection-list {
+  flex-wrap: wrap;
+}
+
+/* PRODUCT CARD */
+
+.product-card {
+  width: calc((100% - 2.5rem * 2) / 3);
+  margin-bottom: 2.3rem;
+  height: 100%;
+}
+
+.product-image-wrapper {
+  padding-top: 120%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.swiper-container {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  user-select: none;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  object-fit: cover;
+}
+
+.swiper-button-prev {
+  cursor: url('./mobile-arrows-left.png') 15 8, auto;
+}
+
+.swiper-button-next {
+  cursor: url('./mobile-arrows-right.png') 15 8, auto;
+}
+
+.swiper-button-prev, 
+.swiper-button-next {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  margin-top: 0;
+  outline-style: none;
+  box-shadow: none;
+}
+
+.swiper-button-prev::after, 
+.swiper-button-next::after {
+  content: none;
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  
+}
+
+@media (max-width: 900px) {
+  .menu-drawer {
+    display: block;
+  }
+  .header-nav {
+    display: none;
+  }
+  h1 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+
+@media (max-width: 599px) {
+  .header-inner {
+    display: none;
+  }
+
+  main {
+    padding-top: 0;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+

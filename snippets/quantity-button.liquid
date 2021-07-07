@@ -1,0 +1,13 @@
+{% if value == blank %}
+{% assign value = 1 %}
+{% endif %} 
+
+<div class="quantity-picker">
+  <label for="{{ id }}" class="sr-only">{{ 'product.quantity' | t }}</label>
+  
+  <input type="number" class="js-quantity-field sr-only {% if field_class != blank %}{{ field_class }}{% endif %}" id="{{ id }}" name="{{ name }}" value="{{ value }}" min="1" {% if max != blank %}max="{{ max }}"{% endif %}>
+  
+  <button class="quantity-button minus" type="button" {% if value == min %}disabled{% endif %}>&ndash;</button>
+  <span class="quantity-text">{{ value }}</span>
+  <button class="quantity-button plus" type="button" {% if value == max %}disabled{% endif %}>+</button>
+</div>

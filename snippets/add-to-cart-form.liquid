@@ -1,0 +1,53 @@
+<form id="add-to-cart-form">
+
+  {% if product.available %}
+
+  <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+
+  {% if product.variants.first.inventory_quantity > 1 %}
+    {% render 'quantity-button' with id: 'quantity', value: '1', min: '1', max: product.variants.first.inventory_quantity %}
+  {% endif %}
+
+  <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">{{ 'product.submit' | t }} <span class="add-cart-button-price">{{ product.price | money}}</span></button>
+
+  {% endif %}
+</form>
+
+<script>
+  if (document.querySelector('#add-to-cart-form')) {
+
+    const productForm = Vue.createApp({
+      delimiters: ['${', '}'],
+      data() {
+        return {
+          variant: ""
+        }
+      },
+      created() {
+        axios.get("/products/{{ product.handle }}.js")
+          .then(results => {
+            this.variant = results.data.variants[0].id
+          })
+      },
+      methods: {
+        addToCart(event) {
+          event.preventDefault()
+
+          let data = {
+            id: this.variant,
+            quantity: 1
+          }
+
+          axios.post('/cart/add.js', data)
+            .then(res => {
+              console.log(res)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
+      }
+    }).mount('#add-to-cart-form')
+
+  }
+</script> 

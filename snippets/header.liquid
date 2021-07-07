@@ -1,0 +1,48 @@
+<header>
+  <div class="header-inner flex wrapper space-between">
+
+    <div class="menu-drawer">
+      <button class="menu-button">
+        <span>Menu</span>
+      </button>
+    </div>
+
+    <a href="/" class=logo><h1>{{ 'general.title' | t }}</h1></a>
+  
+    <nav class="header-nav">
+        <ul class="header-menu flex space-between">
+            {% for link in linklists.main-menu.links %}
+                <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <div class="cart-button-container">
+      <button class="cart-button">
+        <span>
+            <img src="{{ 'cart.png' | asset_img_url: '60x' }}" alt="your cart">
+            <div class="cart-item-count">
+                {{ cart.item_count }}
+            </div>
+        </span>
+      </button>
+
+    </div>
+  
+    <!-- <a href="/cart" class="cart-link">
+        <span>
+            <img src="{{ 'cart.png' | asset_img_url: '60x' }}" alt="your cart">
+            <div class="cart-item-count">
+                {{ cart.item_count }}
+            </div>
+        </span>
+        <span>
+            X
+        </span>
+    </a> -->
+
+  </div>
+
+</header>
