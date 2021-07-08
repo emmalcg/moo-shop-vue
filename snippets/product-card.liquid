@@ -13,15 +13,14 @@
     </div>
   </a>
 
+  {% assign product_description = product.description | split: '|' %}
   <a href="{{ product.url | within: collection }}">
-    <div class="product-cart-title">
+    <div class="product-card-title">
       <h3>{{product.title | upcase }}</h3>
       <p class="product-card-price">{{ product.price | money_without_trailing_zeros }}</p>
-      <p class="product-card-sizes">
-        {% assign product_description = product.description | split: '|' %}
-
+      <div class="product-card-size">
         {{ product_description.first }}
-      </p>
+      </div>
       <div class="add-button">
         <div class="plus"></div>
       </div>
@@ -48,6 +47,5 @@
     }
   })
 
-console.log('.swiper-container-{{- product.id -}}')
 </script>
 

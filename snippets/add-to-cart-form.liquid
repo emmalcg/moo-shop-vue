@@ -40,7 +40,7 @@
 
           axios.post('/cart/add.js', data)
             .then(res => {
-              console.log(res)
+              store.getCart()
             })
             .catch(err => {
               console.log(err)

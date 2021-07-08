@@ -1,4 +1,4 @@
-<header>
+<header id="header">
   <div class="header-inner flex wrapper space-between">
 
     <div class="menu-drawer">
@@ -19,30 +19,55 @@
         </ul>
     </nav>
 
-    <div class="cart-button-container">
+    <div class="cart-button-container" @click="toggleMiniCart">
       <button class="cart-button">
         <span>
             <img src="{{ 'cart.png' | asset_img_url: '60x' }}" alt="your cart">
-            <div class="cart-item-count">
-                {{ cart.item_count }}
-            </div>
+            <template class="cart-item-count" v-if="cart">
+              ${cart.item_count}
+            </template>
         </span>
       </button>
-
     </div>
-  
-    <!-- <a href="/cart" class="cart-link">
-        <span>
-            <img src="{{ 'cart.png' | asset_img_url: '60x' }}" alt="your cart">
-            <div class="cart-item-count">
-                {{ cart.item_count }}
-            </div>
-        </span>
-        <span>
-            X
-        </span>
-    </a> -->
 
   </div>
 
+    <div class="mini-cart" :class="{ hidden: miniCart }">
+      {% render 'mini-cart' %}
+    </div>
+  
 </header>
+
+<script>
+
+  if (document.querySelector('#header')) {
+
+    const headerCart = Vue.createApp({
+      delimiters: ['${', '}'],
+      data() {
+        return {
+          cartData: store.state.cartState
+        }
+      },
+      methods: {
+        toggleMiniCart() {
+          toggleMiniCart.openCart()
+        }
+      },
+      computed: {
+        miniCart() {
+          return miniCartState.hidden
+        },
+        menuDrawer() {
+          return menuState.hidden
+        },
+        cart() {
+          return this.cartData[0]
+        }
+      },
+      created() {
+        store.getCart()
+      }
+    }).mount('#header')
+  }
+</script>
