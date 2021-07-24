@@ -1,4 +1,4 @@
-<div class="cart-form">
+<div class="cart-form flex column space-between">
   <template v-if="cart && cart.items.length > 0">
     <div class="mini-cart-rows">
       <div class="mini-cart-item" v-for="item in cart.items">
@@ -12,10 +12,22 @@
             <a :href="item.url">${ item.title }</a>
           </div>
           <div>
-            ${ item.price }
+            ${ money(item.price) }
+          </div>
+          <div class="mini-cart-item-quantity">
+            <input type="text" v-model="item.quantity" />
+            <button class="mini-cart-quantity-button" @click="decrement(item)">&ndash;</button>
+            <button class="mini-cart-quantity-button" @click="increment(item)">+</button>
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <div class="checkout-subtotal">
+        <p>Subtotal: </p>
+        <p>${ money(cart.total_price) }</p>
+      </div>
+      <a href="/checkout" class="checkout-button">Checkout</a>
     </div>
   </template>
 

@@ -1,25 +1,35 @@
-<footer class="footer-global wrapper">
-    <div class="footer-top flex">
-        <a href="/" class=logo><p>{{ 'general.title' | t }}</p></a>
-
-        <ul class="footer-list flex">
-            {% for link in linklists.footer.links %}
-                <li>
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-
-    <div class="footer-right">
-        {% assign copyright_date = 'now' | date:'%Y' %}
-        <span>{{ 'footer.copyright' | t: date:copyright_date }}</span>
-
-        <div class="social-link">
-            <a href="{{ 'footer.social.plumb_url' | t}}" target="new"><img src="{{ 'plumb.png' | asset_img_url: '35x' }}" alt="plum drawing"></a>
-            <a href="mailto:{{ 'footer.social.email_link' | t}}"><img src="{{ 'mail.png' | asset_img_url: '50x' }}" alt="mail envelope"></a>
+<footer class="footer">
+    <div class="footer-inner flex space-between wrapper">
+        <div class="half flex space-between">
+            <div class="footer-left">
+                <a href="/" class=logo><p>{{ 'general.title' | t }}</p></a>
+            </div>
+            <div class="footer-right flex space-between">
+                <div class="footer-menu flex column half">
+                    <ul class="secondary-menu">
+                    {% for link in linklists.footer.links %}
+                        <li>
+                            <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
         </div>
-    </div>
 
+        <div class="footer-menu footer-social flex column">
+            <ul class="social-link flex">
+                <li>
+                    <a href="{{ 'footer.social.plumb_url' | t}}" target="new"><img src="{{ 'plumb.png' | asset_img_url: '35x' }}" alt="plum drawing"></a>
+                </li>
+                <li>
+                    <a href="mailto:{{ 'footer.social.email_link' | t}}"><img src="{{ 'mail.png' | asset_img_url: '50x' }}" alt="mail envelope"></a>
+                </li>
+            </ul>
+
+            {% assign copyright_date = 'now' | date:'%Y' %}
+            <span>{{ 'footer.copyright' | t: date:copyright_date }}</span>
+        </div>
+
+    </div>
 </footer>
