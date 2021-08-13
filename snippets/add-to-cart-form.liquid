@@ -32,7 +32,8 @@
       methods: {
         addToCart(event) {
           event.preventDefault()
-          
+          toggleMiniCart.openCart()
+
           let data = {
             id: this.variant,
             quantity: 1

@@ -18,15 +18,27 @@
 
     <div class="cart-button-container" @click="toggleMiniCart">
       <button class="cart-button">
-        <span>
-            <img src="{{ 'cart.png' | asset_img_url: '60x' }}" alt="your cart">
-            <template class="cart-item-count" v-if="cart">
+          <img class="cart-image" src="{{ 'cart.svg' | asset_url }}"  alt="your cart" itemprop="cart"> 
+          <span class="cart-item-count">
+            <template v-if="cart">
               ${cart.item_count}
             </template>
-        </span>
+          </span>
       </button>
     </div>
 
+  </div>
+
+  <div class="header-mobile">
+    <a href="/" class="header-title">MoveObjects Online</a>
+    <div class="mobile-nav">
+      <button class="mobile-nav-button" @click="toggleMenu">
+        <span>Menu</span>
+      </button>
+      <button class="mobile-nav-button" @click="toggleMiniCart">
+        <span>Cart</span>
+      </button>
+    </div>
   </div>
 
   <div class="menu-drawer" :class="{ hidden: menuDrawer }">
