@@ -19,11 +19,13 @@
     <div class="cart-button-container" @click="toggleMiniCart">
       <button class="cart-button">
           <img class="cart-image" src="{{ 'cart.svg' | asset_url }}"  alt="your cart" itemprop="cart"> 
-          <span class="cart-item-count">
-            <template v-if="cart">
-              ${cart.item_count}
-            </template>
-          </span>
+          <div class="cart-item-count">
+            <span>
+              <template v-if="cart">
+                ${cart.item_count}
+              </template>
+            </span>
+          </div>
       </button>
     </div>
 
@@ -57,10 +59,19 @@
 <script>
 
   if (document.querySelector('#header')) {
+    {% assign cart_items_count = cart.items | size %}
+    const cartItemMaxQuantities = {
+      {%- for item in cart.items -%}
+      "{{ item.id }}": {{- item.variant.inventory_quantity -}}
+      {%- unless forloop.index == cart_items_count -%},{%- endunless -%}
+      {%- endfor -%}
+    }
+    console.log(cartItemMaxQuantities)
 
     const headerCart = Vue.createApp({
       delimiters: ['${', '}'],
       data() {
+        console.log(store.state.cartState)
         return {
           cartData: store.state.cartState
         }
@@ -99,6 +110,17 @@
             })
             .catch(err => console.log(err))
         },
+        remove(item) {
+          const data = {
+            "id": item.key,
+            "quantity": 0
+          }
+          axios.post('/cart/change.js', data)
+            .then(res => {
+              store.getCart()
+            })
+            .catch(err => console.log(err))
+        },
         money(value) {
           if (!value) return 0
           return "$" + (value/100)
@@ -119,5 +141,6 @@
         store.getCart()
       }
     }).mount('#header')
+  
   }
 </script>

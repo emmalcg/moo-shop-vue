@@ -25,8 +25,12 @@
   
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
+  
+<!--lazu loading images -->
+  <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>
+
 </head>
-<body>
+<body class="flex column">
 
   {% render 'header' %}
 

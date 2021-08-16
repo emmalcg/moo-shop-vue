@@ -7,7 +7,11 @@
       <div class="swiper-wrapper">
         {% for image in product.images %}
           <div class="swiper-slide">
-            <img src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+            <img 
+              data-src="{{ image.src | img_url: 'master' }}" 
+              alt="{{ image.alt | escape }}"
+              class="lazyload"
+              >
             <div class="swiper-button-next swiper-button-next-{{- product.id -}}"></div>
             <div class="swiper-button-prev swiper-button-prev-{{- product.id -}}"></div>
           </div>
@@ -19,9 +23,15 @@
   <div class="product-description-container">
     <h2>{{ product.title }}</h2>
     <div class="product-bottom">
-      <p class="product-description">
         {{ product.description }}
-      </p>
+
+      {% if product.variants.first.inventory_quantity == 1 %}
+        <div class="only-one">
+          <p>~only one~</p>
+        </div>
+      {% endif %}
+
+
       {% render 'add-to-cart-form' %}
     </div>
   </div>
@@ -31,7 +41,7 @@
   new Swiper(".swiper-container-{{- product.id -}}", {
     slidesPerView: 1,
     centeredSlides: true,
-    spaceBetween: 0,
+    spaceBetween: 1,
     loop: true,
 
     breakpoints: {

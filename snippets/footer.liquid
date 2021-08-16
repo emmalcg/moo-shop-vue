@@ -5,7 +5,7 @@
                 <a href="/" class=logo><p>{{ 'general.title' | t }}</p></a>
             </div>
             <div class="footer-right flex space-between">
-                <div class="footer-menu flex column half">
+                <div class="footer-menu flex column">
                     <ul class="secondary-menu">
                     {% for link in linklists.footer.links %}
                         <li>
@@ -20,10 +20,15 @@
         <div class="footer-menu footer-social flex column">
             <ul class="social-link flex">
                 <li>
-                    <a href="{{ 'footer.social.plumb_url' | t}}" target="new"><img src="{{ 'plumb.png' | asset_img_url: '35x' }}" alt="plum drawing"></a>
+                    <a href="{{ 'footer.social.plumb_url' | t}}" target="new">
+                        <img class="link-icon" src="{{ 'plumb-icon.png' | asset_url }}" alt="plum drawing">
+                    </a>
                 </li>
-                <li>
-                    <a href="mailto:{{ 'footer.social.email_link' | t}}"><img src="{{ 'mail.png' | asset_img_url: '50x' }}" alt="mail envelope"></a>
+                
+                <li class="mail">
+                    <a href="mailto:{{ 'footer.social.email_link' | t}}">
+                        <img class="link-icon" src="{{ 'mail-icon.png' | asset_url }}" alt="mail envelope">
+                    </a>
                 </li>
             </ul>
 

@@ -4,10 +4,6 @@
 
   <input name="id" value="{{ product.variants.first.id }}" type="hidden">
 
-  {% if product.variants.first.inventory_quantity > 1 %}
-    {% render 'quantity-button' with id: 'quantity', value: '1', min: '1', max: product.variants.first.inventory_quantity %}
-  {% endif %}
-
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">{{ 'product.submit' | t }} <span class="add-cart-button-price">{{ product.price | money}}</span></button>
 
   {% endif %}
@@ -36,7 +32,7 @@
 
           let data = {
             id: this.variant,
-            quantity: 1
+            quantity: 1,
           }
 
           axios.post('/cart/add.js', data)
