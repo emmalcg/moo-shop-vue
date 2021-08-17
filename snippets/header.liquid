@@ -44,6 +44,9 @@
   </div>
 
   <div class="menu-drawer" :class="{ hidden: menuDrawer }">
+    <button class="menu-drawer-close" @click="toggleMenu">
+      Close
+    </button>
     {% render 'menu-drawer' %}
   </div>
 
@@ -66,7 +69,6 @@
       {%- unless forloop.index == cart_items_count -%},{%- endunless -%}
       {%- endfor -%}
     }
-    console.log(cartItemMaxQuantities)
 
     const headerCart = Vue.createApp({
       delimiters: ['${', '}'],

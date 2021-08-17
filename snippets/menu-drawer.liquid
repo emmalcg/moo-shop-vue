@@ -1,11 +1,22 @@
 <div class="menu-drawer-inner">
   <nav class="side-nav">
     <ul class="side-nav-menu">
+        <li>
+          <a href="/">Home</a>
+        </li>
         {% for link in linklists.footer.links %}
         <li>
             <a href="{{ link.url }}">{{ link.title }}</a>
         </li>
       {% endfor %}
+        <li>
+          <a href="mailto:{{ 'footer.social.email_link' | t}}">
+            Contact
+          </a>
+        </li>
     </ul>
+    <a href="{{ 'footer.social.plumb_url' | t}}" target="new">
+      <img class="link-icon" src="{{ 'plumb-icon.png' | asset_url }}" alt="plum drawing">
+    </a>
   </nav>
 </div>
